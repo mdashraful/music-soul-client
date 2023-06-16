@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .activeLink {
-  @apply text-amber-500 font-bold text-lg;
+  @apply text-warning font-bold;
 }

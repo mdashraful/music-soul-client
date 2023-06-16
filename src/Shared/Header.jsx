@@ -4,7 +4,7 @@ import { AuthContext } from '../Providers/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
 import useInstructor from '../hooks/useInstructor';
 
-const Header = () => {
+const Header = ({ setDark }) => {
     const { user, logOut } = useContext(AuthContext);
     // const [dropdownNav, setDropdownNav] = useState(false);
     const [isAdmin] = useAdmin();
@@ -18,6 +18,7 @@ const Header = () => {
 
                     {/* sun icon */}
                     <svg
+                        onClick={() => setDark(true)}
                         className="swap-on fill-current w-6 h-6"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -27,6 +28,7 @@ const Header = () => {
 
                     {/* moon icon */}
                     <svg
+                        onClick={() => setDark(true)}
                         className="swap-off fill-current w-6 h-6"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -38,7 +40,7 @@ const Header = () => {
             <li>
                 <NavLink
                     to="/"
-                    className={({ isActive }) => (isActive ? "activeLink" : " text-base")}
+                    className={({ isActive }) => (isActive ? "activeLink" : "")}
                 >
                     Home
                 </NavLink>
@@ -46,7 +48,7 @@ const Header = () => {
             <li>
                 <NavLink
                     to="/instructors"
-                    className={({ isActive }) => (isActive ? "activeLink" : " text-base")}
+                    className={({ isActive }) => (isActive ? "activeLink" : "")}
                 >
                     Instructors
                 </NavLink>
@@ -54,7 +56,7 @@ const Header = () => {
             <li>
                 <NavLink
                     to="/allClasses"
-                    className={({ isActive }) => (isActive ? "activeLink" : " text-base")}
+                    className={({ isActive }) => (isActive ? "activeLink" : "")}
                 >
                     Classes
                 </NavLink>
@@ -68,7 +70,7 @@ const Header = () => {
                                 ? "dashboard/myClass"
                                 : "/dashboard/selectedClass"
                             }`}
-                        className={({ isActive }) => (isActive ? "activeLink" : " text-base")}
+                        className={({ isActive }) => (isActive ? "activeLink" : "")}
                     >
                         Dashboard
                     </NavLink>
@@ -77,7 +79,7 @@ const Header = () => {
         </>
     );
     return (
-        <div className='navbar z-10 bg-opacity-80 shadow-lg fixed top-0 left-0 right-0 px-3 py-0 max-w-screen-2xl mx-auto'>
+        <div className='navbar z-10 bg-black text-white bg-opacity-60 shadow-lg fixed top-0 left-0 right-0 px-3 py-0 max-w-screen-2xl mx-auto'>
             <div className="navbar px-3  justify-between">
                 <div className="navbar-start">
                     <Link to="/" className=" text-warning text-2xl md:text-4xl md:flex items-end font-semibold">
