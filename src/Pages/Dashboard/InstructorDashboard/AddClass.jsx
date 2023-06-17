@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { useForm } from 'react-hook-form';
-import Swal from 'sweetalert2';
+import { toast } from 'react-hot-toast';
 
 const AddClass = () => {
     const { user } = useContext(AuthContext);
@@ -40,19 +40,13 @@ const AddClass = () => {
                 console.log(data);
                 if (data.insertedId) {
                     reset()
-                    Swal.fire({
-                        icon: "success",
-                        title: "Successfully added this class",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
+                    toast.success("Successfully added this class")
                 }
             });
-        // console.log(addClassInfo)
     };
     return (
-        <div className=" min-h-screen pt-20 bg-teal">
-            <h1 className="text-5xl font-bold text-center pt-8 text-white">
+        <div className=" min-h-screen pt-20">
+            <h1 className="text-5xl font-bold text-center pt-8">
                 Add a Class!
             </h1>
             <div className="hero">
@@ -148,7 +142,7 @@ const AddClass = () => {
                                     />
                                 </div>
                                 <div className="form-control mt-6">
-                                    <input type="submit" className="button" value="Add a Class" />
+                                    <input type="submit" className="btn btn-warning" value="Add a Class" />
                                 </div>
                             </form>
                         </div>

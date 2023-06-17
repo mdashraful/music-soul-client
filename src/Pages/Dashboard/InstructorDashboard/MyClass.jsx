@@ -6,13 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 const MyClass = () => {
     const { user, loading } = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()
-    // const [myClass, setMyClass]= useState([])
-    // useEffect(()=>{
-    //     fetch(`${import.meta.env.VITE_API_URL}/myClass?email=${user?.email}`)
-    //     .then(res => res.json())
-    //     .then(data => setMyClass(data))
-    // },[])
-    const { refetch, data: myClass = [] } = useQuery({
+    const { data: myClass = [] } = useQuery({
         queryKey: ["myClass", user?.email],
         enabled: !loading,
         queryFn: async () => {
@@ -20,10 +14,9 @@ const MyClass = () => {
             return res.data;
         },
     });
-    // console.log(myClass)
     return (
-        <div className=' min-h-screen pt-20 bg-teal'>
-            <div className="overflow-x-auto m-14 w-2/3 mx-auto bg-white">
+        <div className=' min-h-screen pt-20'>
+            <div className="overflow-x-auto m-14 w-2/3 mx-auto">
                 <table className="table border">
                     {/* head */}
                     <thead>
@@ -45,7 +38,7 @@ const MyClass = () => {
                                 <td>{i.status}</td>
                                 <td>{i?.feedback}</td>
                                 <td className="">
-                                    <div className="btn btn-outline hover:bg-[#019999] border border-[#019999] hover:text-white">
+                                    <div className="btn btn-warning btn-outline">
                                         Update
                                     </div>
                                 </td>
