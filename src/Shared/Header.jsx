@@ -28,7 +28,7 @@ const Header = ({ setDark }) => {
 
                     {/* moon icon */}
                     <svg
-                        onClick={() => setDark(true)}
+                        onClick={() => setDark(false)}
                         className="swap-off fill-current w-6 h-6"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -133,7 +133,7 @@ const Header = ({ setDark }) => {
                         </label>
                         <div
                             tabIndex={0}
-                            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-32 right-2"
+                            className="menu bg-white text-black menu-compact dropdown-content mt-3 p-2 shadow  rounded-box w-32 right-2"
                         >
                             {navLinkList}
                             {user ? (
