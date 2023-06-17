@@ -16,7 +16,7 @@ const PopularInstructors = ({ dark }) => {
             ></SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-20">
                 {instructors.slice(0, 6).map((i, index) => (
-                    <div key={i._id} className={`card border shadow-md ${dark && 'bg-slate-600'}`}>
+                    <div key={index} className={`card border shadow-md ${dark && 'bg-slate-600'}`}>
                         <figure>
                             <img className='h-64 w-full' src={i.instructorImg} alt="Instructor" />
                         </figure>
