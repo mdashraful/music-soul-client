@@ -11,7 +11,7 @@ const StudentDashboard = () => {
                 <NavLink
                     to="/dashboard/selectedClass"
                     className={({ isActive }) =>
-                        isActive ? "bg-teal text-white font-semibold" : "font-semibold"
+                        isActive ? "activeLink" : "font-semibold"
                     }
                 >
                     <AiOutlineSelect className="text-xl"></AiOutlineSelect>
@@ -22,7 +22,7 @@ const StudentDashboard = () => {
                 <NavLink
                     to="/dashboard/enrolledClass"
                     className={({ isActive }) =>
-                        isActive ? "bg-teal text-white font-semibold" : "font-semibold"
+                        isActive ? "activeLink" : "font-semibold"
                     }
                 >
                     <BiSelectMultiple className="text-xl"></BiSelectMultiple>
@@ -33,7 +33,7 @@ const StudentDashboard = () => {
                 <NavLink
                     to="/dashboard/paymentHistory"
                     className={({ isActive }) =>
-                        isActive ? "bg-teal text-white font-semibold" : "font-semibold"
+                        isActive ? "activeLink" : "font-semibold"
                     }
                 >
                     <TfiWallet className="text-xl"></TfiWallet>

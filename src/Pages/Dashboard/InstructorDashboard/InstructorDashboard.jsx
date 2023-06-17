@@ -10,7 +10,7 @@ const InstructorDashboard = () => {
                 <NavLink
                     to="/dashboard/myClass"
                     className={({ isActive }) =>
-                        isActive ? "bg-teal text-white font-semibold" : "font-semibold"
+                        isActive ? "activeLink" : "font-semibold"
                     }
                 >
                     <BiSelectMultiple className="text-xl"></BiSelectMultiple>
@@ -21,7 +21,7 @@ const InstructorDashboard = () => {
                 <NavLink
                     to="/dashboard/addClass"
                     className={({ isActive }) =>
-                        isActive ? "bg-teal text-white font-semibold" : "font-semibold"
+                        isActive ? "activeLink" : "font-semibold"
                     }
                 >
                     <AiOutlineAppstoreAdd className="text-xl"></AiOutlineAppstoreAdd>

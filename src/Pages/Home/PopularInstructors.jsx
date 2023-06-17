@@ -12,7 +12,6 @@ const PopularInstructors = ({ dark }) => {
     return (
         <div>
             <SectionTitle
-                subTitle="The art of teaching is the art of assisting discovery."
                 title="Popular Instructors"
             ></SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-20">
@@ -22,12 +21,10 @@ const PopularInstructors = ({ dark }) => {
                             <img src={i.instructorImg} alt="Instructor" />
                         </figure>
                         <div className="card-body">
-                            <div className="lg:flex justify-between items-center">
-                                <h2 className="card-title text-2xl text-teal">
-                                    {i.instructorName}
-                                </h2>
-                                <p className="opacity-60 lg:text-right">{i.instructorEmail}</p>
-                            </div>
+                            <h2 className="card-title text-2xl text-teal">
+                                {i.instructorName}
+                            </h2>
+                            <p className="opacity-60 lg:text-right">{i.instructorEmail}</p>
                             <p className="font-semibold">{i.className}</p>
                             <p>
                                 Experienced as a professional {i.className}r for {index + 2}{" "}

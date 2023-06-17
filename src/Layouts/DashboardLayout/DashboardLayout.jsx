@@ -31,21 +31,35 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 h-full bg-base-100 text-base-content gap-2">
                         {/* Sidebar content here */}
                         <li>
-                            <div className="navbar-start flex items-center gap-2">
-                                <img src={logo} alt="" className="w-12" />
-                                <Link to="/" className="text-2xl font-semibold">
-                                    Funtown<span className="text-[#019999]">Frolic</span>
+                            <div className="mx-auto">
+                                <Link to="/" className=" text-warning text-2xl md:text-4xl font-semibold">
+                                    Music<span className="text-sm md:text-xl ">.Soul</span>
                                 </Link>
                             </div>
                         </li>
                         <li>
                             <div className="flex flex-col mx-auto mb-3">
-                                <img src={user?.photoURL} className="w-14 h-14 rounded-full" />
+                                <img src={user?.photoURL} className="w-14 h-14 rounded-full my-2" />
                                 <p className="font-bold text-xl text-teal">
                                     {user?.displayName}
                                 </p>
                             </div>
                         </li>
+                        <li className="font-semibold">
+                            <NavLink to="/">
+                                <BiHome className="text-xl"></BiHome>
+                                Home
+                            </NavLink>
+                        </li>
+                        <li onClick={logOut} className="font-semibold">
+                            <NavLink to='/'>
+                                <AiOutlineLogout className="text-xl"></AiOutlineLogout>
+                                Log Out
+                            </NavLink>
+                        </li>
+                        <div className="divider my-2 font-semibold ">
+                            ---------------------------------------------
+                        </div>
                         {
                             isAdmin && <AdminDashboard></AdminDashboard>
                         }
@@ -53,32 +67,6 @@ const DashboardLayout = () => {
                         {
                             !isAdmin && !isInstructor && <StudentDashboard></StudentDashboard>
                         }
-                        {/* {student && <StudentDashboard></StudentDashboard>} */}
-                        {/* {admin && <AdminDashboard></AdminDashboard>} */}
-                        <div className="divider my-2 text-teal font-semibold ">
-                            ---------------------------------------------
-                        </div>
-
-                        <li className="font-semibold">
-                            <NavLink to="/">
-                                <BiHome className="text-xl"></BiHome>
-                                Home
-                            </NavLink>
-                        </li>
-                        {/* <li className="font-semibold">
-                <NavLink
-                  to="/allClasses"
-                >
-                <BsReverseLayoutTextSidebarReverse className="text-xl"></BsReverseLayoutTextSidebarReverse>
-                  All Classes
-                </NavLink>
-              </li> */}
-                        <li onClick={logOut} className="font-semibold">
-                            <NavLink to='/'>
-                                <AiOutlineLogout className="text-xl"></AiOutlineLogout>
-                                Log Out
-                            </NavLink>
-                        </li>
                     </ul>
                 </div>
             </div>

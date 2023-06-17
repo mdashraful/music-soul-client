@@ -10,7 +10,7 @@ const AdminDashboard = () => {
                 <NavLink
                     to="/dashboard/manageClasses"
                     className={({ isActive }) =>
-                        isActive ? "bg-teal text-white font-semibold" : "font-semibold"
+                        isActive ? "activeLink" : "font-semibold"
                     }
                 >
                     <BsReverseLayoutTextSidebarReverse className="text-xl"></BsReverseLayoutTextSidebarReverse>
@@ -21,7 +21,7 @@ const AdminDashboard = () => {
                 <NavLink
                     to="/dashboard/manageUsers"
                     className={({ isActive }) =>
-                        isActive ? "bg-teal text-white font-semibold" : "font-semibold"
+                        isActive ? "activeLink" : "font-semibold"
                     }
                 >
                     <FaUsers className="text-xl"></FaUsers>
