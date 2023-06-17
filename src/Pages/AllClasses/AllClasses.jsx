@@ -4,18 +4,19 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../Providers/AuthProvider';
 import useAdmin from '../../hooks/useAdmin';
 import useInstructor from '../../hooks/useInstructor';
+import { toast } from 'react-hot-toast';
 
 const AllClasses = () => {
     const { user } = useContext(AuthContext);
     const [isAdmin] = useAdmin()
     const [isInstructor] = useInstructor()
-    const [danceClasses, setDanceClasses] = useState([]);
+    const [musicClasses, setMusicClasses] = useState([]);
     const navigate = useNavigate();
     // console.log(danceClasses)
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/classes`)
             .then((res) => res.json())
-            .then((data) => setDanceClasses(data));
+            .then((data) => setMusicClasses(data));
     }, []);
 
     const handleSelect = (selectClass) => {
@@ -33,14 +34,7 @@ const AllClasses = () => {
                 .then(data => {
                     console.log(data)
                     if (data.insertedId) {
-                        Swal.fire({
-                            title: 'Congratulations!',
-                            text: 'You Select this class. Pay this for continue.',
-                            imageUrl: `${selectClass.classImg}`,
-                            imageWidth: 300,
-                            imageHeight: 200,
-                            imageAlt: 'Class image',
-                        })
+                        toast.success('You Select this class. Pay this for continue!')
                         navigate("/dashboard/selectedClass");
                     }
                 })
@@ -62,24 +56,24 @@ const AllClasses = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {danceClasses.map((i, index) => (
-                <div key={index} className={`card border shadow-md ${i.available_seat === 0 && 'bg-red-400'}`}>
-                    <figure>
-                        <img className="h-56" src={i.classImg} alt="Dance class" />
-                    </figure>
+            {musicClasses.map((a, index) => (
+                <div
+                    key={index}
+                    className={`card card-side shadow-xl grid grid-cols-1 border`}
+                >
+                    <img
+                        className="h-64 w-full"
+                        src={a.classImg}
+                        alt="Music classes"
+                    />
                     <div className="card-body">
-                        <h2 className="card-title font-bold text-2xl">{i.className}</h2>
-                        <div className="lg:flex justify-between items-center">
-                            <h2 className="card-title text-lg">{i.instructorName}</h2>
-                            <p className="opacity-60 lg:text-right">{i.instructorEmail}</p>
-                        </div>
-                        <p className="text-teal font-semibold">Price: ${i.price}</p>
-                        <div className="flex justify-between">
-                            <p>Enrolled: {i.enrolled}</p>
-                            <p className="text-right">Available Seat: {i.available_seat}</p>
-                        </div>
+                        <h2 className="card-title font-bold text-2xl">{a.className}</h2>
+                        <p className="m-0 text-sm">{a.instructorName}</p>
+                        <p className="text-warning font-semibold">Price: ${a.price}</p>
+                        <p>Enrolled: {a.enrolled}</p>
+                        <p className="">Available Seat: <span className='btn btn-neutral btn-outline'>{a.available_seat}</span></p>
                         <div className="card-actions justify-center mt-5">
-                            <button disabled={isAdmin || isInstructor || i.available_seat === 0} onClick={() => handleSelect(i)} className={`button`}>
+                            <button disabled={isAdmin || isInstructor || a.available_seat === 0} onClick={() => handleSelect(a)} className={`btn btn-warning`}>
                                 Select
                             </button>
                         </div>

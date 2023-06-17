@@ -11,17 +11,17 @@ const Instructors = () => {
             .then((data) => setInstructors(data));
     }, []);
     return (
-        <div className="grid grid-cols-1 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {instructors.map((i) => (
                 <div
                     key={i._id}
-                    className=" md:w-2/4 mx-auto border card card-side shadow-xl grid grid-cols-2"
+                    className="w-full mx-auto border card card-side shadow-xl grid grid-cols-2"
                 >
                     <figure>
                         <img
-                            className="h-52 rounded-xl ml-4"
+                            className="h-60 rounded-xl ml-4"
                             src={i.instructorImg}
-                            alt="Dance classes"
+                            alt="instructor"
                         />
                     </figure>
                     <div className="card-body">
@@ -29,15 +29,13 @@ const Instructors = () => {
                             {i.instructorName}
                         </h2>
                         <p className="m-0 ">{i.instructorEmail}</p>
-                        <p className="text-teal">Classes: {i.className}</p>
-                        <div className="flex justify-between">
-                            <p>Enrolled: {i.enrolled}</p>
-                            <p className="text-right">Available Seat: {i.available_seat}</p>
-                        </div>
+                        <p className="text-warning">Classes: {i.className}</p>
+                        <p>Enrolled: {i.enrolled}</p>
+                        <p className="">Available Seat: {i.available_seat}</p>
                         <div className="card-actions justify-end mt-5">
                             <Link
                                 to={`/instructor/${i._id}`}
-                                className="button"
+                                className="btn btn-warning btn-outline"
                             >
                                 See Classes
                             </Link>
