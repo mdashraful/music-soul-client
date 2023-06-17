@@ -18,17 +18,16 @@ const PopularInstructors = ({ dark }) => {
                 {instructors.slice(0, 6).map((i, index) => (
                     <div key={i._id} className={`card border shadow-md ${dark && 'bg-slate-600'}`}>
                         <figure>
-                            <img src={i.instructorImg} alt="Instructor" />
+                            <img className='h-64 w-full' src={i.instructorImg} alt="Instructor" />
                         </figure>
                         <div className="card-body">
-                            <h2 className="card-title text-2xl text-teal">
+                            <h2 className="card-title text-2xl text-warning">
                                 {i.instructorName}
                             </h2>
-                            <p className="opacity-60 lg:text-right">{i.instructorEmail}</p>
+                            <p className="opacity-60">{i.instructorEmail}</p>
                             <p className="font-semibold">{i.className}</p>
                             <p>
-                                Experienced as a professional {i.className}r for {index + 2}{" "}
-                                years.
+                                Hi! I am {i.instructorName}. You are going to expert at {i.className}. So let us start...
                             </p>
                         </div>
                     </div>

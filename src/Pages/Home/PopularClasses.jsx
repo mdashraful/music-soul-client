@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import SectionTitle from '../../Includes/SectionTitle';
 
 const PopularClasses = ({ dark }) => {
-    const [danceClasses, setDanceClasses] = useState([]);
+    const [musicClasses, setMusicClasses] = useState([]);
     // console.log(danceClasses)
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/classes`)
             .then((res) => res.json())
-            .then((data) => setDanceClasses(data));
+            .then((data) => setMusicClasses(data));
     }, []);
     return (
         <div>
@@ -16,7 +16,7 @@ const PopularClasses = ({ dark }) => {
                 title="Popular Classes"
             ></SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                {danceClasses.map((a) => (
+                {musicClasses.map((a) => (
                     <div
                         key={a._id}
                         className={`card card-side shadow-xl grid grid-cols-1 border ${dark && 'bg-slate-600'}`}
@@ -24,7 +24,7 @@ const PopularClasses = ({ dark }) => {
                         <img
                             className="h-64 w-full"
                             src={a.classImg}
-                            alt="Dance classes"
+                            alt="Music classes"
                         />
                         <div className="card-body">
                             <h2 className="card-title font-bold text-2xl">{a.className}</h2>
