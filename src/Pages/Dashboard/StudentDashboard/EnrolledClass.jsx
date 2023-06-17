@@ -23,7 +23,7 @@ const EnrolledClass = () => {
                     <table className="table border">
                         {/* head */}
                         <thead>
-                            <tr className="font-semibold text-lg">
+                            <tr className="font-semibold">
                                 <th></th>
                                 <th>Class Name</th>
                                 <th>Price</th>
@@ -36,7 +36,7 @@ const EnrolledClass = () => {
                                     <th>{index + 1}</th>
                                     <td className="font-bold">{i.className}</td>
                                     <td>$ {i.price}</td>
-                                    <td className='text-teal font-semibold'>Successfull</td>
+                                    <td className='text-warning font-semibold'>Successfull</td>
                                 </tr>
                             ))}
                         </tbody>

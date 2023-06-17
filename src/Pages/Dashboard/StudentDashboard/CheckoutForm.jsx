@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const CheckoutForm = ({ price, id }) => {
     const stripe = useStripe();
@@ -89,12 +90,7 @@ const CheckoutForm = ({ price, id }) => {
                     axiosSecure.delete(`/fromSelect/${classId}`).then((res) => {
                         console.log(res.data);
                         if (res.data.deleteResult.deletedCount > 0) {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Payment Successfull!",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
+                            toast.success('Payment Successfull!')
                         }
                     });
                 }
@@ -123,14 +119,14 @@ const CheckoutForm = ({ price, id }) => {
                 <button
                     type="submit"
                     disabled={!stripe || !clientSecret || processing}
-                    className="btn text-white my-5 bg-[#019999] "
+                    className="btn btn-warning mt-6"
                 >
                     Pay
                 </button>
             </form>
             {cardError && <p className="text-red-600">{cardError}</p>}
             {transactionId && (
-                <p className="text-teal">
+                <p className="text-warning">
                     Transacion successfull with transactionId: {transactionId}
                 </p>
             )}

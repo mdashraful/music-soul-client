@@ -23,7 +23,7 @@ const PaymentHistory = () => {
                     <table className="table border">
                         {/* head */}
                         <thead>
-                            <tr className="font-semibold text-lg">
+                            <tr className="font-semibold">
                                 <th></th>
                                 <th>Class Name</th>
                                 <th>Price</th>
@@ -37,7 +37,7 @@ const PaymentHistory = () => {
                                     <th>{index + 1}</th>
                                     <td className="font-bold">{i.className}</td>
                                     <td>$ {i.price}</td>
-                                    <td className='text-teal'>{i.transactionId}</td>
+                                    <td className='text-warning'>{i.transactionId}</td>
                                     <td>{i.date}</td>
                                 </tr>
                             ))}
