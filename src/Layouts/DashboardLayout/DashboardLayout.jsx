@@ -39,7 +39,7 @@ const DashboardLayout = () => {
                         </li>
                         <li>
                             <div className="flex flex-col mx-auto mb-3">
-                                <img src={user?.photoURL} className="w-14 h-14 rounded-full my-2" />
+                                <img src={user?.photoURL} className="w-14 h-14 my-2" />
                                 <p className="font-bold text-xl text-teal">
                                     {user?.displayName}
                                 </p>

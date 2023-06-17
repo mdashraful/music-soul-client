@@ -3,30 +3,22 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { toast } from 'react-hot-toast';
 
 const ManageClasses = () => {
     const { user, loading } = useContext(AuthContext);
     const [axiosSecure] = useAxiosSecure();
-    // const [classes, setClasses] = useState([]);
-    // console.log(classes)
-    // useEffect(() => {
-    //   fetch(`${import.meta.env.VITE_API_URL}/allClasses`)
-    //     .then((res) => res.json())
-    //     .then((data) => setClasses(data));
-    // }, []);
     const { data: classes = [], refetch } = useQuery({
         queryKey: ["allClasses", user?.email],
         enabled:
             !loading && !!user?.email && !!localStorage.getItem("access_token"),
         queryFn: async () => {
             const res = await axiosSecure.get(`/allClasses`);
-            // console.log(res)
             return res.data;
         },
     });
 
     const handleApproveClass = (i) => {
-        // console.log(i)
         fetch(`${import.meta.env.VITE_API_URL}/allClasses/approve/${i._id}`, {
             method: 'PATCH'
         })
@@ -35,12 +27,7 @@ const ManageClasses = () => {
                 if (data.modifiedCount > 0) {
                     refetch()
                     console.log(data)
-                    Swal.fire({
-                        icon: "success",
-                        title: `Successfully ${i.className} added as class.`,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
+                    toast.success(`Successfully ${i.className} added as class.`)
                 }
             })
     }
@@ -54,12 +41,7 @@ const ManageClasses = () => {
                 if (data.modifiedCount > 0) {
                     refetch()
                     console.log(data)
-                    Swal.fire({
-                        icon: "success",
-                        title: `You Denied ${i.className} class.`,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
+                    toast.error(`You Denied ${i.className} class.`)
                 }
             })
     }
@@ -92,8 +74,8 @@ const ManageClasses = () => {
         }
     }
     return (
-        <div className=" min-h-screen pt-20 bg-teal">
-            <div className="overflow-x-auto w-11/12 mx-auto bg-white">
+        <div className=" min-h-screen pt-20">
+            <div className="overflow-x-auto w-11/12 mx-auto">
                 <table className="table border">
                     {/* head */}
                     <thead>
@@ -117,25 +99,25 @@ const ManageClasses = () => {
                                 </th>
                                 <td className="font-semibold">{i.className}</td>
                                 <td>
-                                    <p className="font-semibold">{i.instructorName}</p>
-                                    <p className="text-sm">{i.instructorEmail}</p>
+                                    <p className="">{i.instructorName}</p>
+                                    <p className="text-xs">{i.instructorEmail}</p>
                                 </td>
                                 <td>{i.available_seat}</td>
                                 <td>$ {i.price}</td>
                                 <td
-                                    className={`font-semibold ${i.status === "approved" ? "text-teal" : "text-red-600"
+                                    className={`font-semibold ${i.status === "approved" ? "text-warning" : "text-red-600"
                                         }`}
                                 >
                                     {i.status}
                                 </td>
                                 <td >
-                                    <button onClick={() => handleApproveClass(i)} disabled={i.status === "approved"} className="button-outline">Approve</button>
+                                    <button onClick={() => handleApproveClass(i)} disabled={i.status === "approved"} className="btn btn-warning btn-outline">Approve</button>
                                 </td>
                                 <td >
-                                    <button onClick={() => handleDeniedClass(i)} disabled={i.status === "denied"} className="button-outline ">Deny</button>
+                                    <button onClick={() => handleDeniedClass(i)} disabled={i.status === "denied"} className="btn btn-neutral btn-outline">Deny</button>
                                 </td>
                                 <td>
-                                    <div onClick={() => handleFeedback(i)} className="button">Send Feedback</div>
+                                    <button onClick={() => handleFeedback(i)} className="btn btn-warning">Send Feedback</button>
                                 </td>
                             </tr>
                         ))}
