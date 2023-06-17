@@ -1,19 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const ManageUsers = () => {
     const { user, loading } = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()
-    // const [users, setUsers] = useState([]);
-    // console.log(users);
-    // useEffect(() => {
-    //   fetch(`${import.meta.env.VITE_API_URL}/users`)
-    //     .then((res) => res.json())
-    //     .then((data) => setUsers(data));
-    // }, []);
     const { refetch, data: users = [] } = useQuery({
         queryKey: ["users", user?.email],
         enabled: !loading && !!user?.email && !!localStorage.getItem('access_token'),
@@ -32,12 +25,7 @@ const ManageUsers = () => {
             .then((data) => {
                 if (data.modifiedCount > 0) {
                     refetch()
-                    Swal.fire({
-                        icon: "success",
-                        title: `Successfully ${user.name} is admin now.`,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
+                    toast.success(`Successfully ${user.name} is admin now.`)
                 }
             });
     };
@@ -50,18 +38,13 @@ const ManageUsers = () => {
             .then((data) => {
                 if (data.modifiedCount > 0) {
                     refetch()
-                    Swal.fire({
-                        icon: "success",
-                        title: `Successfully ${user.name} is instructor now.`,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
+                    toast.success(`Successfully ${user.name} is instructor now.`)
                 }
             });
     };
     return (
-        <div className=" min-h-screen pt-20 bg-teal">
-            <div className="overflow-x-auto m-14 w-2/3 mx-auto bg-white">
+        <div className=" min-h-screen pt-20">
+            <div className="overflow-x-auto m-14 w-2/3 mx-auto">
                 <table className="table border">
                     {/* head */}
                     <thead>
@@ -82,24 +65,24 @@ const ManageUsers = () => {
                                 <td>{i.role}</td>
                                 {i.role === "instructor" ? (
                                     <td>
-                                        <div disabled className="button">
+                                        <div disabled className="btn">
                                             Instructor
                                         </div>
                                     </td>
                                 ) : (
                                     <td className="" onClick={() => handleMakeInstructor(i)}>
-                                        <div className="button-outline">Instructor</div>
+                                        <div className="btn btn-warning btn-outline">Instructor</div>
                                     </td>
                                 )}
                                 {i.role === "admin" ? (
                                     <td>
-                                        <div disabled className="button">
+                                        <div disabled className="btn">
                                             Admin
                                         </div>
                                     </td>
                                 ) : (
                                     <td className="">
-                                        <div onClick={() => handleMakeAdmin(i)} className="button">
+                                        <div onClick={() => handleMakeAdmin(i)} className="btn btn-warning btn-outline">
                                             Admin
                                         </div>
                                     </td>
