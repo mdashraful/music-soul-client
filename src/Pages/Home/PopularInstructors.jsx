@@ -14,7 +14,7 @@ const PopularInstructors = ({ dark }) => {
             <SectionTitle
                 title="Popular Instructors"
             ></SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-10">
                 {instructors.slice(0, 6).map((i, index) => (
                     <div key={index} className={`card border shadow-md ${dark && 'bg-slate-600'}`}>
                         <figure>

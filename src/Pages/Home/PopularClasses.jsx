@@ -15,7 +15,7 @@ const PopularClasses = ({ dark }) => {
             <SectionTitle
                 title="Popular Classes"
             ></SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-10">
                 {musicClasses.map((a) => (
                     <div
                         key={a._id}
